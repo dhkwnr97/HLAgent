@@ -1,0 +1,104 @@
+name: hlagent
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Python
+  - python=3.12
+
+  # Default LLM
+  - ollama
+  - openai
+  - anthropic
+
+  # MCP and tools
+  - httpx
+  - pydantic
+  - pydantic-core
+  - pydantic-settings
+  - nodejs
+  - mcp
+
+  # Core scientific computing
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+
+  # Visualization
+  - matplotlib
+  - seaborn
+  - plotly
+
+  # Web framework
+  - streamlit
+  - streamlit-chat
+
+  # System tools
+  - git
+  - curl
+  - wget
+  - unzip
+
+  # Bioinformatics tools
+  - plink
+  - plink2
+  - bcftools
+  - samtools
+  - htslib
+  - biopython
+
+  # R and R packages
+  - r-base
+  - r-essentials
+
+  # Java (for bioinformatics tools)
+  - openjdk
+
+  # LLM and AI frameworks
+  # LLM frameworks
+  - langchain
+  - langgraph
+  - langchain-core
+  - langchain-openai
+  - langchain-anthropic
+  - langchain-chroma
+  - langchain-community
+
+  # Vector database
+  - chromadb
+  - python-docx
+  - sentence-transformers
+  - h5py
+  - PyPDF2
+  - markdown
+
+  # File processing
+  - openpyxl
+  - chardet
+  - pysam
+  - vcfpy
+
+  # Async support
+  - aiohttp
+  - aiofiles
+  - asyncio-throttle
+
+  # Utilities
+  - python-dotenv
+  - click
+  - rich
+  - tqdm
+  - requests
+  - uvicorn
+
+  # System integration
+  - docker-py
+  - psutil
+
+  # Configuration
+  - PyYAML
+  - toml
+  - jsonschema
+  - uv

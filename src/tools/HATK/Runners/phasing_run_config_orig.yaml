@@ -1,0 +1,214 @@
+# BEAGLE Phasing Configuration File
+# =================================
+# BEAGLE phasing analysis for HLA fine-mapping with support for multiple input formats.
+# Supports VCF, PLINK (.bed/.bim/.fam), and BEAGLE (.bgl) input formats.
+# Outputs .bgl.phased and .aa files for downstream Omnibus Test analysis.
+
+# ==================================================================================
+# REQUIRED PARAMETERS
+# ==================================================================================
+
+# Output configuration
+_out: "data/output/Phasing/phased_analysis"                                 # Output file prefix
+
+# ==================================================================================
+# INPUT FILES (specify ONE of the following input formats)
+# ==================================================================================
+
+# Option 1: PLINK binary files
+_bfile: "data/output/BMarkerGenerator/bMGen_wtccc_filtered_58C_RA.hatk.300+300_imgt3320_2field.hg18" # PLINK binary files prefix (.bed/.bim/.fam)
+
+# Option 2: VCF file
+_vcf: null                                                                  # VCF file path
+
+# Option 3: BEAGLE file
+_bgl: null                                                                  # BEAGLE file path (.bgl)
+_markers: null                                                              # Markers file (required with .bgl input)
+
+
+# ==================================================================================
+# BEAGLE file conversion specific parameters
+_missing: '0'                                                               # string format of missing data (default: 0)
+# ==================================================================================
+
+# ==================================================================================
+# PHASING PARAMETERS
+# ==================================================================================
+
+# Java and resource settings
+_java_mem: "16g"                                                             # Java memory allocation
+                                                                             # - For BEAGLE 3.3.2: Will be converted to MB in decimal (e.g., "8g" -> "8000m")
+                                                                             # - For BEAGLE 5.x: Uses GB format (e.g., "8g")
+                                                                             # Examples: "2g", "4g", "8g", "8000m", "4000m"
+                                                                             # Note: BEAGLE 3.3.2 uses decimal conversion (8GB = 8000MB, not 8192MB)
+_nthreads: 6                                                                # Number of threads (only for BEAGLE 5.4+, 3.3.2 uses single thread)
+
+# BEAGLE-phasing specific parameters
+_beagle_params:
+  niterations: 10                                                           # Number of phasing iterations
+  nsamples: 4                                                               # Number of haplotype samples per iteration
+  seed: -99999                                                              # Random seed for reproducibility
+
+
+# ==================================================================================
+# OUTPUT CONFIGURATION
+# ==================================================================================
+
+# Output file settings
+_generate_aa: true                                                          # Generate amino acid (.aa) file for Omnibus Test
+_gzip_output: true                                                          # Compress intermediate files
+_save_intermediates: false                                                  # Keep intermediate files
+
+# CookHLA reference settings
+_cookhla_ref: false                                                         # Use CookHLA reference format
+
+# ==================================================================================
+# COMPATIBILITY SETTINGS
+# ==================================================================================
+
+# BEAGLE version compatibility
+_beagle_compatibility:
+  version: "3.3.2"                                                         # BEAGLE version options:
+                                                                            # - "3.3.2": Use local beagle.jar from src/tools/HATK/dependency/
+                                                                            # - "bioconda": Use system-installed beagle command (conda install -c bioconda beagle)
+                                                                            # - other: Use system-installed beagle command
+  force_version_check: false                                                # Force version compatibility check
+
+# HATK integration
+_hatk_integration:
+  omnibus_test_ready: true                                                  # Prepare output for Omnibus Test
+  aa_file_format: "standard"                                                # AA file format: "standard", "extended"
+
+# ==================================================================================
+# ANALYSIS CONFIGURATION
+# ==================================================================================
+
+# Quality control parameters
+_quality_control:
+  min_maf: 0.01                                                             # Minimum minor allele frequency
+  min_call_rate: 0.95                                                       # Minimum call rate
+  max_missing_rate: 0.05                                                    # Maximum missing rate
+
+# Region-specific settings (HLA region defaults)
+_region_settings:
+  chr: 6                                                                    # Chromosome number
+  from_mb: 29                                                               # Start position in megabases
+  to_mb: 34                                                                 # End position in megabases
+
+# ==================================================================================
+# RESOURCE MANAGEMENT
+# ==================================================================================
+
+# Performance settings
+_performance:
+  measure_time: true                                                        # Measure execution time
+  show_progress: true                                                       # Show progress indicators
+  memory_efficient: false                                                   # Use memory-efficient algorithms
+
+# Temporary file management
+_temp_files:
+  temp_dir: null                                                            # Custom temporary directory
+  cleanup_on_exit: true                                                     # Clean up temporary files on exit
+  max_temp_size_gb: 30                                                      # Maximum temporary file size in GB
+
+# ==================================================================================
+# LOGGING CONFIGURATION
+# ==================================================================================
+
+# Output verbosity
+_verbose: true                                                              # Enable verbose output
+_log_level: "INFO"                                                          # Log level: DEBUG, INFO, WARNING, ERROR
+
+# Log file settings
+_logging:
+  save_log: true                                                            # Save log to file
+  log_file: null                                                            # Custom log file path (auto-generated if null)
+  include_timestamps: true                                                  # Include timestamps in log entries
+
+# ==================================================================================
+# VALIDATION SETTINGS
+# ==================================================================================
+
+# Input validation
+_validation:
+  check_input_files: true                                                   # Validate input files exist
+  check_file_formats: true                                                  # Validate file formats
+  check_java_availability: true                                             # Check if Java is available
+  check_beagle_jar: true                                                    # Check if BEAGLE jar exists
+
+# Data validation
+_data_validation:
+  check_sample_consistency: true                                            # Check sample ID consistency across files
+  validate_genotype_data: true                                              # Basic genotype data validation
+  check_missing_data_rate: true                                             # Check missing data rates
+
+# ==================================================================================
+# USAGE MODES
+# ==================================================================================
+
+# Command line interface
+_cli_mode: true                                                             # Enable command line interface
+_interactive: false                                                         # Enable interactive mode
+
+# Python API mode
+_api_mode: true                                                             # Enable Python API mode
+_return_results: true                                                       # Return results as Python objects
+
+
+# ==================================================================================
+# OUTPUT FILE NAMING CONVENTION
+# ==================================================================================
+# The output files will be named using the following pattern:
+# {output_prefix}.{extension}
+#
+# Example with current settings:
+# Input: _bfile = "bMGen_wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.hg18"
+#        _out = "data/output/Phasing/phased_analysis"
+# Output files:
+# - Phased BEAGLE file: "data/output/Phasing/phased_analysis.bgl.phased"
+# - Amino acid file: "data/output/Phasing/phased_analysis.aa"
+# - Summary file: "data/output/Phasing/phased_analysis_phasing_summary.txt"
+# - Log file: "data/output/Phasing/phased_analysis.log"
+#
+# This naming convention provides:
+# - Clear identification of the phasing analysis
+# - Compatibility with Omnibus Test input requirements
+# - Easy tracking of analysis parameters
+# - Consistent file organization
+# - Support for both .bgl.phased and .aa output formats
+#
+# Usage Notes:
+# - For Omnibus Test without conditions: Use the .bgl.phased file directly
+# - For Omnibus Test with conditions: Use the .aa file
+# - The .aa file is automatically generated from the .bgl.phased file
+# - Both files are compatible with downstream HATK analysis modules
+
+# ==================================================================================
+# EXAMPLE CONFIGURATIONS
+# ==================================================================================
+
+# Example 1: PLINK input with custom BEAGLE parameters
+# _bfile: "data/examples/my_data"
+# _out: "data/output/Phasing/my_analysis"
+# _beagle_params:
+#   niterations: 15
+#   nsamples: 8
+#   verbose: true
+# _java_mem: "4g"  # Will be converted to "4000m" for BEAGLE 3.3.2 (decimal)
+
+# Example 2: VCF input with BEAGLE 5.4+ (supports multithreading)
+# _vcf: "data/examples/my_data.vcf.gz"
+# _out: "data/output/Phasing/my_analysis"
+# _java_mem: "8g"  # Uses GB format for BEAGLE 5.x
+# _nthreads: 8
+# _beagle_compatibility:
+#   version: "5.4+"
+
+# Example 3: BEAGLE input with BEAGLE 3.3.2 (single thread only)
+# _bgl: "data/examples/my_data.bgl"
+# _markers: "data/examples/my_data.markers"
+# _out: "data/output/Phasing/my_analysis"
+# _nthreads: 1  # Will be ignored for BEAGLE 3.3.2
+# _java_mem: "2g"  # Will be converted to "2000m" for BEAGLE 3.3.2 (decimal)
+# _beagle_compatibility:
+#   version: "3.3.2" 

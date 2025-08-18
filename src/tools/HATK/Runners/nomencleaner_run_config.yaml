@@ -1,0 +1,45 @@
+# NomenCleaner Configuration File
+# ===============================
+# This file contains the configuration parameters for the NomenCleaner function.
+# Each parameter corresponds to a parameter in the NomenCleaner function.
+
+# Required parameters
+_hped: "data/examples/wtccc_filtered_58C_RA.hatk.300+300.hped"
+_hat: "data/output/Imgt2Seq/HLA_ALLELE_TABLE.imgt3320.hat"
+_output_dir: "data/output/NomenCleaner"
+_out_prefix: null  # If null, input file name_format will be automatically set
+
+# Output format specification
+# Options: "1field", "2field", "3field", "4field", "ggroup", "pgroup", "default"
+# - "1field" to "4field": Maximum number of fields to output
+# - "ggroup": G-group nomenclature
+# - "pgroup": P-group nomenclature  
+# - "default": Keep original format while converting (recommended)
+_output_format: ["2field", "ggroup", "pgroup"]  # You can specify  multiple format by list
+# _output_format: "default"            # You can specify single format
+
+
+# Optional parameters
+_f_NoGenePrefix: false                                              # Remove gene prefix from output (e.g., A*01:01 -> 01:01)
+_f_leave_NotFound: false                                            # Keep unmatched alleles as-is instead of converting to '0'
+
+# HLA target genes to process
+# Standard 8 major HLA genes (recommended for most analyses)
+_HLA_target: ["A", "B", "C", "DPA1", "DPB1", "DQA1", "DQB1", "DRB1"]
+
+# Extended HLA target genes (uncomment to include additional genes)
+# _HLA_target: ["A", "B", "C", "DPA1", "DPB1", "DQA1", "DQB1", "DRB1"]
+
+# Output directory settings
+_create_output_dir: true                                            # Create output directory if it doesn't exist
+_verbose: true                                                      # Enable verbose logging
+_save_summary: true                                                 # Save processing summary to file
+
+# Advanced options
+_validation:
+  check_input_files: true                                           # Validate input files before processing
+  check_output_format: true                                         # Validate output format specification
+  
+_performance:
+  show_progress: true                                               # Show progress during processing
+  measure_time: true                                                # Measure and report execution time

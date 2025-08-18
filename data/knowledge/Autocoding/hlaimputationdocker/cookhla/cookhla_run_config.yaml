@@ -1,0 +1,50 @@
+# Configuration for running CookHLA imputation.
+
+# Docker image to use for CookHLA.
+docker_image: "dhkwnr97/cookhla:latest"
+
+# Define all necessary volume mounts for the Docker container.
+# The runner will automatically translate paths in 'cookhla_params' based on these mounts.
+volume_mounts:
+  - host_path: "data/input/Genotype"
+    container_path: "/data"
+    description: "Main input data directory (e.g., PLINK files)."
+  - host_path: "data/input/ReferencePanel"
+    container_path: "/ref"
+    description: "Reference panel data directory."
+  - host_path: "data/output/HLAImputation/Cookhla"
+    container_path: "/output"
+    description: "Directory for all output files."
+
+# Parameters for the CookHLA.py script.
+# --- IMPORTANT ---
+# All paths below should be specified from the HOST machine's perspective.
+# The runner will automatically convert them to container paths.
+cookhla_params:
+  # Host path to the input file prefix (without extension).
+  input_prefix: "data/input/Genotype/1958BC.hg19"
+  
+  # Human Genome version (e.g., 18, 19, 38).
+  hg_version: 19
+  
+  # Host path for the output file prefix.
+  output_prefix: "data/output/HLAImputation/Cookhla/1958BC+1000G_REF.EUR."
+  
+  # Host path to the reference panel file/directory.
+  reference_panel: "data/input/ReferencePanel/1000G_REF/1000G_REF.EUR.chr6.hg18.29mb-34mb.inT1DGC"
+  
+  # (Optional) Host path to the genetic map file for pre-generated AGM.
+  # Leave as `null` or remove for auto-generation (CookHLA README.md, Option 2).
+  genetic_map: null
+  
+  # (Optional) Host path to the allele error rate file for pre-generated AGM.
+  # Leave as `null` or remove for auto-generation (CookHLA README.md, Option 2).
+  error_rate: null
+  
+  # Resource allocation.
+  # The example data was processed for 30 minutes using a Ryzen 3600X with 12GB of memory and 6 processes.
+  memory: "12g"
+  multiprocess: 6
+  
+  # Other boolean options.
+  save_ambiguous_snp: false

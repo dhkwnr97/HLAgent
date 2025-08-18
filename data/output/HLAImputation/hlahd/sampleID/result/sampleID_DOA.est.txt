@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-DOA*01:01:02:01,HLA-DOA*01:01:02:02,HLA-DOA*01:01:02:03	HLA-DOA*01:01:01	exon2:23.2169:comp.0	exon2:22.8434:comp.0

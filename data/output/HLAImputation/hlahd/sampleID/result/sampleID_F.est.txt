@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-F*01:01:03:02,HLA-F*01:01:03:01,HLA-F*01:01:03:03,HLA-F*01:01:03:04	-	exon2:18.7111:comp.0,exon3:41.663:comp.0	-

@@ -1,0 +1,13 @@
+convert	dictionary/convert.list
+exon	exon1	0
+exon	exon2	1
+intron	intron1	exon1	exon2
+fasta	exon1	dictionary/DRB9/DRB9_exon1_N150.fasta
+fasta	exon2	dictionary/DRB9/DRB9_exon2_N150.fasta
+fasta	intron1	150	150	dictionary/DRB9/DRB9_intron1_N150.fasta
+exon1	1	/data/Output_dir/sampleID/exon/sampleID_R1.DRB9_exon1.sam
+exon2	1	/data/Output_dir/sampleID/exon/sampleID_R1.DRB9_exon2.sam
+exon1	2	/data/Output_dir/sampleID/exon/sampleID_R2.DRB9_exon1.sam
+exon2	2	/data/Output_dir/sampleID/exon/sampleID_R2.DRB9_exon2.sam
+intron1	1	/data/Output_dir/sampleID/intron/sampleID_R1.DRB9_intron1.sam
+intron1	2	/data/Output_dir/sampleID/intron/sampleID_R2.DRB9_intron1.sam

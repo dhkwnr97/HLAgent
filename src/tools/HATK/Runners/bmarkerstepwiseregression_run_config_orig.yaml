@@ -1,0 +1,207 @@
+# bMarkerStepwiseRegression Configuration File
+# ==========================================
+# Enhanced Stepwise Conditional Regression for HLA fine-mapping with automatic regression type selection.
+
+# ==================================================================================
+# REQUIRED PARAMETERS
+# ==================================================================================
+
+# Input files
+_bfile_prefix: "data/output/BMarkerGenerator/bMGen_wtccc_filtered_58C_RA.hatk.300+300_imgt3320_2field.hg18"  # PLINK binary files prefix
+_out: "data/output/BMarkerStepwiseRegression"  # Output directory path
+
+# ==================================================================================
+# OPTIONAL PARAMETERS
+# ==================================================================================
+
+# Phenotype data
+_pheno_file: "data/examples/wtccc_filtered_58C_RA.hatk.300+300.phe"                # External phenotype file (if not using .fam phenotypes)
+_pheno_name: "RA"                                                                   # Phenotype column name in phenotype file
+
+# Covariate data
+_covar_file: null                                                                   # Covariate file path
+_covar_names: []                                                                    # List of covariate names to include
+
+# PLINK executable
+_plink_path: "plink"                                                                # Path to PLINK executable
+
+# ==================================================================================
+# STEPWISE REGRESSION PARAMETERS
+# ==================================================================================
+
+# Significance thresholds
+_significance_threshold: 0.05                                                       # P-value threshold for stepwise selection
+_genome_wide_threshold: 5e-8                                                        # Genome-wide significance threshold
+
+# Iteration control
+_max_iterations: 100                                                                # Maximum number of stepwise iterations
+_convergence_tolerance: 1e-6                                                        # Convergence tolerance for stepwise procedure
+
+# ==================================================================================
+# REGION PARAMETERS (HLA region defaults)
+# ==================================================================================
+
+_chr: 6                                                                             # Chromosome number (default: 6 for HLA)
+_from_mb: 29                                                                        # Start position in megabases
+_to_mb: 34                                                                          # End position in megabases
+_hla_region: true                                                                   # Focus on HLA region analysis
+
+# Alternative region specification (use instead of mb if needed)
+_from_bp: null                                                                      # Start position in base pairs
+_to_bp: null                                                                        # End position in base pairs
+
+# ==================================================================================
+# ANALYSIS CONFIGURATION
+# ==================================================================================
+
+# Automatic phenotype detection and regression type selection
+_analysis_settings:
+  automatic_phenotype_detection: true                                               # Automatically detect phenotype type
+  regression_type_selection: "automatic"                                            # "automatic", "linear", or "logistic"
+  hla_optimized: true                                                               # Optimize for HLA region analysis
+  forward_selection: true                                                           # Use forward selection (vs backward elimination)
+
+# Quality control parameters
+_quality_control:
+  min_maf: 0.01                                                                     # Minimum minor allele frequency
+  min_call_rate: 0.95                                                               # Minimum call rate
+  max_missing_rate: 0.05                                                            # Maximum missing rate
+  exclude_ambiguous_snps: true                                                      # Exclude A/T and G/C SNPs
+
+# Stepwise algorithm parameters
+_stepwise_settings:
+  entry_threshold: 0.05                                                             # P-value threshold for entry
+  removal_threshold: 0.10                                                           # P-value threshold for removal
+  force_include_snps: []                                                            # List of SNPs to force include
+  exclude_snps: []                                                                  # List of SNPs to exclude
+
+# ==================================================================================
+# RESOURCE MANAGEMENT
+# ==================================================================================
+
+# Memory and performance settings
+_performance:
+  measure_time: true                                                                # Measure execution time
+  show_progress: true                                                               # Show progress indicators
+  parallel_jobs: 1                                                                  # Number of parallel jobs
+  memory_limit: "4G"                                                                # Memory limit for PLINK
+
+# Temporary file management
+_temp_files:
+  keep_intermediate: false                                                          # Keep intermediate files
+  cleanup_on_exit: true                                                             # Clean up temporary files on exit
+  temp_directory: null                                                              # Custom temporary directory
+  save_iteration_results: false                                                     # Save individual iteration PLINK results
+
+# ==================================================================================
+# LOGGING CONFIGURATION
+# ==================================================================================
+
+# Output verbosity
+_verbose: true                                                                      # Enable verbose output
+_log_level: "INFO"                                                                  # Log level: DEBUG, INFO, WARNING, ERROR
+
+# Progress reporting
+_progress_reporting:
+  show_iteration_details: true                                                      # Show details for each iteration
+  show_snp_selection: true                                                          # Show SNP selection process
+  save_iteration_logs: true                                                         # Save logs for each iteration
+
+# ==================================================================================
+# VALIDATION SETTINGS
+# ==================================================================================
+
+# Input validation
+_validation:
+  check_input_files: true                                                           # Validate input files exist
+  validate_phenotype_distribution: true                                             # Validate phenotype data
+  check_plink_availability: true                                                    # Check if PLINK is available
+  validate_region_parameters: true                                                  # Validate genomic region parameters
+
+# ==================================================================================
+# OUTPUT CONFIGURATION
+# ==================================================================================
+
+# Output file formats
+_output_formats:
+  save_json_summary: true                                                           # Save JSON summary file
+  save_text_summary: true                                                           # Save text summary file
+  save_selected_snps: true                                                          # Save selected SNPs list
+  save_iteration_history: true                                                      # Save iteration history
+  export_for_visualization: true                                                    # Export data for visualization
+
+# Result filtering and reporting
+_result_filtering:
+  top_snps_to_report: 20                                                            # Number of top SNPs to include in summary
+  include_effect_sizes: true                                                        # Include effect sizes in results
+  include_confidence_intervals: true                                                # Include confidence intervals
+  report_hla_specific: true                                                         # Generate HLA-specific reports
+
+# ==================================================================================
+# ADVANCED SETTINGS
+# ==================================================================================
+
+# Model selection criteria
+_model_selection:
+  use_aic: false                                                                    # Use Akaike Information Criterion
+  use_bic: false                                                                    # Use Bayesian Information Criterion
+  cross_validation: false                                                           # Perform cross-validation
+
+# Conditional analysis options
+_conditional_analysis:
+  max_conditioning_snps: 10                                                         # Maximum number of SNPs to condition on
+  check_multicollinearity: true                                                     # Check for multicollinearity
+  vif_threshold: 5.0                                                                # Variance Inflation Factor threshold
+
+# ==================================================================================
+# OUTPUT FILE NAMING CONVENTION
+# ==================================================================================
+# The output files will be named using the following pattern:
+# {phenotype_basename}_STEPWISE_{bfile_basename}.{extension}
+#
+# Example with current settings:
+# Input: bfile_prefix = "bMGen_wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.hg18"
+#        pheno_file = "wtccc_filtered_58C_RA.hatk.300+300.phe"
+# Output files:
+# - Stepwise summary: "wtccc_filtered_58C_RA.hatk.300+300_STEPWISE_bMGen_wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.hg18_stepwise_summary.json"
+# - Selected SNPs: "wtccc_filtered_58C_RA.hatk.300+300_STEPWISE_bMGen_wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.hg18_selected_snps.txt"
+# - Iteration history: "wtccc_filtered_58C_RA.hatk.300+300_STEPWISE_bMGen_wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.hg18_iteration_history.csv"
+# - Intermediate results: "{prefix}_iter{N}.assoc.logistic" or "{prefix}_iter{N}.assoc.linear"
+#
+# This naming convention provides:
+# - Clear identification of stepwise analysis
+# - Distinction from regular regression analysis
+# - Easy tracking of analysis parameters
+# - Consistent file organization
+# - Unique file names for each analysis run
+
+# ==================================================================================
+# ALGORITHM DESCRIPTION
+# ==================================================================================
+# Enhanced Stepwise Conditional Regression Algorithm:
+# 
+# 1. Initial Analysis:
+#    - Automatically detect phenotype type (binary vs continuous)
+#    - Select appropriate regression method (logistic vs linear)
+#    - Validate input data and parameters
+#
+# 2. Stepwise Forward Selection:
+#    - Iteration 1: Run association analysis on all variants
+#    - Select most significant variant (P < significance_threshold)
+#    - Add to conditioning list
+#    
+# 3. Conditional Analysis:
+#    - Iteration N: Run association analysis conditioning on previously selected variants
+#    - Select next most significant variant
+#    - Continue until no variants meet significance threshold
+#
+# 4. Result Generation:
+#    - Generate comprehensive summary of selected variants
+#    - Create iteration history showing selection process
+#    - Export results in multiple formats
+#    - Generate visualizations if requested
+#
+# 5. Quality Control:
+#    - Check for multicollinearity among selected variants
+#    - Validate model assumptions
+#    - Generate diagnostic plots and statistics

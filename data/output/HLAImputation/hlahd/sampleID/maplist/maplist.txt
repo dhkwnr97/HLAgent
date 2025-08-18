@@ -1,0 +1,5 @@
+convert	dictionary/convert.list
+exon	1	/data/Output_dir/sampleID/mapfile/sampleID.all_exon.R1.NM.sam
+exon	2	/data/Output_dir/sampleID/mapfile/sampleID.all_exon.R2.NM.sam
+intron	1	/data/Output_dir/sampleID/mapfile/sampleID.all_intron.R1.NM.sam
+intron	2	/data/Output_dir/sampleID/mapfile/sampleID.all_intron.R2.NM.sam

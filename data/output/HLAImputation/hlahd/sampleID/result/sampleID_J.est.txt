@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-J*01:01:01:01,HLA-J*01:01:01:02,HLA-J*01:01:01:04,HLA-J*01:01:01:05,HLA-J*01:01:01:03	-	exon2:16.4778:comp.0,exon3:27.5507:comp.0	-

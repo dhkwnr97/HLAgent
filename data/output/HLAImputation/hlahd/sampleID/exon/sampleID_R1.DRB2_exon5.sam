@@ -1,0 +1,3 @@
+@HD	VN:1.5	SO:unsorted	GO:query
+@SQ	SN:DRB2:Exon5_1	LN:324
+@PG	ID:bowtie2	PN:bowtie2	VN:2.5.4	CL:"/opt/hlahd.1.7.0/bowtie2/bowtie2-align-s --wrapper basic-0 --np 0 --n-ceil L,0,0.7 -p 10 -a -x dictionary//all_exon_N150.fasta -S /data/Output_dir/sampleID/mapfile/sampleID.all_exon.R1.sam -U /data/Output_dir/sampleID/mapfile/sampleID.R1.diff.fastq"

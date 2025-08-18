@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-DRB2*01:01	-	exon1:6.30769:incomp.16,exon3:6.1374:comp.0,exon4:5.82883:incomp.33,exon5:0:incomp.24,exon6:0:incomp.12	-

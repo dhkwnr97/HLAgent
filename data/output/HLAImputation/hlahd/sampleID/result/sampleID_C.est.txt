@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-C*07:01:01:01,HLA-C*07:01:01:02	HLA-C*06:02:01:03,HLA-C*06:02:01:02,HLA-C*06:02:01:01	exon2:28.337:comp.0,exon3:23.1014:comp.0	exon2:30.6:comp.0,exon3:25.3877:comp.0

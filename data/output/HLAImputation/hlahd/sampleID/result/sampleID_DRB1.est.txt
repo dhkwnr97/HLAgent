@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-DRB1*15:01:01:01,HLA-DRB1*15:01:01:02,HLA-DRB1*15:01:01:03,HLA-DRB1*15:01:01:04	HLA-DRB1*13:01:01	exon2:45.5556:comp.0	exon2:32.1889:comp.0

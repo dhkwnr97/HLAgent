@@ -1,0 +1,17 @@
+# HLAgent Multi-Agent Bioinformatics System Requirements
+# Python 3.11+ required
+
+# Core frameworks
+asyncio-mqtt
+
+# LLM and AI frameworks  
+pydantic-ai
+pydantic-ai-slim[a2a]
+langchain-google-genai
+langchain-ollama
+fasta2a
+tavily-python
+
+# MCP (Model Context Protocol) integration
+mcp-use
+mcp-use[search]

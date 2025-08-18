@@ -1,0 +1,58 @@
+{
+  "name": "HLAgent",
+  "description": "HLAgent is a HLA (Human Leukocyte Antigen) multi-agent system for genomic analysis. Provides comprehensive HLA analysis capabilities including HLA imputation, fine mapping, genotype phasing, genotype file conversion, Answering HLA, MHC questions, and parameter handler agent through specialized sub-agents orchestrated by a supervisor agent.",
+  "url": "http://localhost:8995",
+  "version": "1.0.0",
+  "protocolVersion": "1.0.0",
+  "provider": {
+    "organization": "HLAgent Team",
+    "url": "https://github.com/hanjg/HLAgent"
+  },
+  "documentationUrl": "https://github.com/hanjg/HLAgent/blob/main/README.md",
+  "iconUrl": "https://github.com/hanjg/HLAgent/blob/main/assets/hlagent-icon.png",
+  "preferredTransport": "jsonrpc",
+  "additionalInterfaces": [],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": true
+  },
+  "security": [],
+  "securitySchemes": {},
+  "defaultInputModes": ["text/plain", "application/json"],
+  "defaultOutputModes": ["text/plain", "application/json"],
+  "skills": [
+    {
+      "name": "HLA Education",
+      "description": "Provides comprehensive education about HLA (Human Leukocyte Antigen) system, MHC, immunogenetics, and related genomic concepts through the HLA Teacher agent."
+    },
+    {
+      "name": "File Format Conversion",
+      "description": "Converts between various genomic file formats including VCF, HPED, BED/BIM/FAM, and other HLA-specific formats through the File Converter agent."
+    },
+    {
+      "name": "Genotype Phasing",
+      "description": "Performs statistical phasing of genotype data to determine haplotype structure through the Genotype Phasing agent. Genotype Phasing agent uses BEAGLE to perform genotype phasing."
+    },
+    {
+      "name": "HLA Imputation", 
+      "description": "Imputes HLA alleles from SNP genotype data using machine learning and population reference panels through the HLA Imputation agent. HLA Imputation agent for now uses cookhla, optitype, hlahd to perform HLA imputation."
+    },
+    {
+      "name": "HLA Fine Mapping",
+      "description": "Conducts fine-mapping analysis to identify causal variants in the HLA region through multi-node distributed analysis via the HLA Fine Mapping agent. HLA Fine Mapping agent uses HATK to perform HLA fine mapping."
+    },
+    {
+      "name": "Parameter Management",
+      "description": "Manages analysis parameters, validates input data, and handles workflow configurations through the Parameter Handler agent."
+    },
+    {
+      "name": "Multi-Agent Orchestration",
+      "description": "Coordinates complex multi-step genomic analysis workflows by delegating tasks between specialized sub-agents through the Supervisor agent."
+    },
+    {
+      "name": "Interactive Consultation",
+      "description": "Provides interactive consultation and guidance for HLA analysis workflows, helping users navigate complex genomic analysis pipelines."
+    }
+  ]
+}

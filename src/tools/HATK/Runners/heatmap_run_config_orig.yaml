@@ -1,0 +1,97 @@
+# HLA Heatmap Configuration File
+# ==============================
+# Configuration for generating HLA association heatmaps from logistic regression results.
+
+# ==================================================================================
+# REQUIRED PARAMETERS
+# ==================================================================================
+
+# Input files and directories
+_assoc_file: "data/output/BMarkerRegression/wtccc_filtered_58C_RA.hatk.300+300_REG_bMGen_wtccc_filtered_58C_RA.hatk.300+300_imgt3320_2field.hg18.assoc.logistic" # Association results file (from bMarkerRegression)
+_maptable_dir: "data/output/Imgt2Seq"                                               # Directory containing HLA maptable files(from IMGT2Seq)
+_output_dir: "data/output/BMarkerRegression"                                        # Output directory for heatmap files
+
+# HLA analysis configuration
+_hla_genes: ["A", "B", "C", "DPA1", "DPB1", "DQA1", "DQB1", "DRB1"]                 # HLA genes to analyze (list: ["A", "B", "C", "DPA1", "DPB1", "DQA1", "DQB1", "DRB1"] or single: ["A"])
+_imgt_version: "3320"                                                               # IMGT version number (used in maptable filenames)
+_genome_build: "hg18"                                                               # Genome build version
+
+# ==================================================================================
+# OPTIONAL PARAMETERS
+# ==================================================================================
+
+# Visualization settings
+_visualization:
+  use_plotly: true                                                                  # Use plotly (interactive) vs matplotlib (static)
+  save_intermediates: false                                                          # Save intermediate files (.map.txt, .assoc.txt, .alleleP.txt)
+  output_formats: ["html", "png"]                                                   # Output formats (plotly: html, matplotlib: png, pdf, svg)
+
+# Figure appearance
+_figure_settings:
+  width: 1400                                                                       # Figure width in pixels
+  height: 900                                                                       # Figure height in pixels
+  text_size: 10                                                                     # Amino acid text size
+  title_size: 16                                                                    # Title font size
+  colorscale: "RdBu_r"                                                             # Color scheme (Red-Blue reversed)
+
+# Data processing parameters
+_data_processing:
+  significance_threshold: null                                                      # P-value significance threshold
+  max_pvalue_display: 2.2                                                            # Maximum -log10(p) value for display
+  min_pvalue: 1e-300                                                                # Minimum p-value to avoid log(0)
+
+# ==================================================================================
+# FILE NAMING CONVENTIONS
+# ==================================================================================
+
+# Maptable file pattern: HLA_MAPTABLE_{hla_gene}.{genome_build}.imgt{imgt_version}.txt
+# Example: HLA_MAPTABLE_A.hg18.imgt3320.txt
+
+# Output file patterns:
+# - Heatmap: {output_prefix}_heatmap_{hla_gene}.{format}
+# - Intermediate files: {output_prefix}_{hla_gene}.{map|assoc|alleleP}.txt
+
+# ==================================================================================
+# QUALITY CONTROL
+# ==================================================================================
+
+_quality_control:
+  validate_input_files: true                                                        # Check if input files exist
+  check_hla_markers: true                                                           # Validate HLA markers in association file
+  min_polymorphic_positions: 1                                                      # Minimum number of polymorphic positions
+  min_hla_alleles: 2                                                                # Minimum number of HLA alleles
+
+# ==================================================================================
+# PERFORMANCE SETTINGS
+# ==================================================================================
+
+_performance:
+  parallel_processing: false                                                        # Process multiple HLA genes in parallel
+  max_workers: 4                                                                    # Maximum parallel workers
+  memory_efficient: true                                                            # Use memory-efficient processing
+  chunk_size: 1000                                                                  # Chunk size for large datasets
+
+# ==================================================================================
+# LOGGING CONFIGURATION
+# ==================================================================================
+
+_logging:
+  verbose: true                                                                      # Enable verbose output
+  log_level: "INFO"                                                                 # Log level: DEBUG, INFO, WARNING, ERROR
+  log_file: null                                                                     # Log file path (null = console only)
+  show_progress: true                                                                # Show progress indicators
+
+# ==================================================================================
+# ADVANCED OPTIONS
+# ==================================================================================
+
+# Error handling
+_error_handling:
+  continue_on_error: true                                                            # Continue processing other HLA genes on error
+  strict_validation: false                                                          # Strict input validation mode
+  backup_existing: false                                                            # Backup existing output files
+
+# Temporary files
+_temp_files:
+  cleanup_on_exit: true                                                             # Clean up temporary files on exit
+  temp_dir: null                                                                     # Temporary directory (null = system default)

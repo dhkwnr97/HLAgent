@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-DRB5*01:01:01	-	exon2:49.2852:comp.0	-

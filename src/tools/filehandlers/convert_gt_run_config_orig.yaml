@@ -1,0 +1,3 @@
+_input_files: [data/input/my.pvar, data/input/my.psam, data/input/my.pgen]
+
+_output_dir: data/output/ConvertGT

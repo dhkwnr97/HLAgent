@@ -1,0 +1,5 @@
+#Pair count	2
+#Best allele pair	1
+HLA-DPB1*04:01:01:01,HLA-DPB1*04:01:01:02	HLA-DPB1*04:02:01:01,HLA-DPB1*04:02:01:02	exon2:11.2462:comp.0	exon2:10.822:comp.0
+#Other ambiguous pair	1
+HLA-DPB1*105:01	HLA-DPB1*126:01

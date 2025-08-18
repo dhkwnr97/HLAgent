@@ -1,0 +1,3 @@
+#Pair count	1
+#Best allele pair	1
+HLA-DPA1*01:03:01:01,HLA-DPA1*01:03:01:02,HLA-DPA1*01:03:01:03,HLA-DPA1*01:03:01:05,HLA-DPA1*01:03:01:04	-	exon2:63.8089:comp.0	-
