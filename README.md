@@ -72,7 +72,7 @@ Before installing HLAgent, ensure you have:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/dhkwnr97/HLAgent.git
 cd HLAgent-main
 ```
 
@@ -100,7 +100,7 @@ conda activate hlagent
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 ```
 
 3. Install Ollama (for local LLM):
