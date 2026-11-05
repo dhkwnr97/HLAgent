@@ -12,14 +12,9 @@ credentials*.json
 *.pem
 *.key
 .hlagent/
-.venv/
 venv/
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.ruff_cache/
-dist/
 knowledge/inbox/*
 !knowledge/inbox/.gitkeep
 evaluation/results/
 *.egg-info/
+
