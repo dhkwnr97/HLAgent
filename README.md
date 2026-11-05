@@ -33,7 +33,7 @@ The statistical methods are described in [`docs/METHODS.md`](docs/METHODS.md).
 - **Working location:** on WSL2, the ext4 file system (`~/work/...`) is much faster than a Windows drive (`/mnt/f/...`).
 
 ```bash
-git clone -b version3 https://github.com/dhkwnr97/HLAgent.git ~/work/HLAgent_v3
+git clone -b version-3 https://github.com/dhkwnr97/HLAgent.git ~/work/HLAgent_v3
 cd ~/work/HLAgent_v3
 ```
 
