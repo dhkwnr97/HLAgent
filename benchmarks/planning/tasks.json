@@ -1,0 +1,1445 @@
+{
+ "version": 1,
+ "planning": [
+  {
+   "id": "imp-en-1",
+   "step": "imputation",
+   "lang": "en",
+   "prompt": "GenotypeExample only has SNP array genotypes. Impute the classical HLA alleles with CookHLA and build the HLA binary marker panel.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "GenotypeExample",
+     "phenotype": [
+      "file",
+      "synthetic_null",
+      "synthetic_spike_in"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1"
+   ],
+   "accept_nodes": [
+    [
+     "Node1"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "imp-en-2",
+   "step": "imputation",
+   "lang": "en",
+   "prompt": "Please impute HLA types for GenotypeExample using the East Asian (EAS) 1000 Genomes reference panel, then build the marker panel.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "GenotypeExample",
+     "phenotype": [
+      "file",
+      "synthetic_null",
+      "synthetic_spike_in"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1"
+   ],
+   "accept_nodes": [
+    [
+     "Node1"
+    ]
+   ],
+   "params": {
+    "reference_population": "EAS"
+   }
+  },
+  {
+   "id": "imp-ko-1",
+   "step": "imputation",
+   "lang": "ko",
+   "prompt": "GenotypeExample은 SNP 데이터만 있어. CookHLA로 HLA imputation 해서 marker panel까지 만들어 줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "GenotypeExample",
+     "phenotype": [
+      "file",
+      "synthetic_null",
+      "synthetic_spike_in"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1"
+   ],
+   "accept_nodes": [
+    [
+     "Node1"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "assoc-en-1",
+   "step": "regression",
+   "lang": "en",
+   "prompt": "Run a logistic regression of rheumatoid arthritis on all HLA markers in WTCCC_RA.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node2"
+    ],
+    [
+     "Node1",
+     "Node2"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "assoc-en-2",
+   "step": "regression",
+   "lang": "en",
+   "prompt": "Which HLA alleles and amino acids are associated with RA in the WTCCC_RA cohort? I only need the marker-level association test.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node2"
+    ],
+    [
+     "Node1",
+     "Node2"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "assoc-ko-1",
+   "step": "regression",
+   "lang": "ko",
+   "prompt": "WTCCC_RA에서 RA와 연관된 HLA 마커를 찾는 회귀분석만 돌려줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node2"
+    ],
+    [
+     "Node1",
+     "Node2"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "cond-en-1",
+   "step": "conditional",
+   "lang": "en",
+   "prompt": "In WTCCC_RA, identify independent HLA association signals for RA with stepwise conditional regression.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node3"
+   ],
+   "accept_nodes": [
+    [
+     "Node3"
+    ],
+    [
+     "Node1",
+     "Node3"
+    ],
+    [
+     "Node2",
+     "Node3"
+    ],
+    [
+     "Node1",
+     "Node2",
+     "Node3"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "cond-ko-1",
+   "step": "conditional",
+   "lang": "ko",
+   "prompt": "WTCCC_RA에서 조건부 회귀분석으로 독립적인 신호가 몇 개인지 찾아줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node3"
+   ],
+   "accept_nodes": [
+    [
+     "Node3"
+    ],
+    [
+     "Node1",
+     "Node3"
+    ],
+    [
+     "Node2",
+     "Node3"
+    ],
+    [
+     "Node1",
+     "Node2",
+     "Node3"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "omni-en-1",
+   "step": "omnibus",
+   "lang": "en",
+   "prompt": "Test every HLA amino-acid position for association with RA in WTCCC_RA using the omnibus test.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node4"
+    ],
+    [
+     "Node1",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "omni-en-2",
+   "step": "omnibus",
+   "lang": "en",
+   "prompt": "Run the omnibus test in WTCCC_RA conditioned on HLA-DRB1 amino-acid position 96 (AA_DRB1_96).",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node4"
+    ],
+    [
+     "Node1",
+     "Node4"
+    ]
+   ],
+   "params": {
+    "omnibus_conditions": [
+     "AA_DRB1_96"
+    ]
+   }
+  },
+  {
+   "id": "omni-ko-1",
+   "step": "omnibus",
+   "lang": "ko",
+   "prompt": "WTCCC_RA에서 아미노산 위치별 omnibus 검정을 해줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node4"
+    ],
+    [
+     "Node1",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "meta-en-1",
+   "step": "meta-analysis",
+   "lang": "en",
+   "prompt": "Meta-analyze the RA association in WTCCC_RA together with the Crohn's disease summary statistics in NBS_CD.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    },
+    {
+     "dataset_id": "NBS_CD",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node5"
+   ],
+   "accept_nodes": [
+    [
+     "Node5"
+    ],
+    [
+     "Node2",
+     "Node5"
+    ],
+    [
+     "Node1",
+     "Node2",
+     "Node5"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "meta-en-2",
+   "step": "meta-analysis",
+   "lang": "en",
+   "prompt": "Combine BMExample and GenotypeExample in a meta-analysis; demo (synthetic) phenotypes are fine because neither has a real phenotype.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "BMExample",
+     "phenotype": [
+      "synthetic_spike_in",
+      "synthetic_null"
+     ]
+    },
+    {
+     "dataset_id": "GenotypeExample",
+     "phenotype": [
+      "synthetic_null"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node5"
+   ],
+   "accept_nodes": [
+    [
+     "Node5"
+    ],
+    [
+     "Node2",
+     "Node5"
+    ],
+    [
+     "Node1",
+     "Node2",
+     "Node5"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "meta-ko-1",
+   "step": "meta-analysis",
+   "lang": "ko",
+   "prompt": "WTCCC_RA 결과랑 NBS_CD 요약통계로 메타분석 해줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    },
+    {
+     "dataset_id": "NBS_CD",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node5"
+   ],
+   "accept_nodes": [
+    [
+     "Node5"
+    ],
+    [
+     "Node2",
+     "Node5"
+    ],
+    [
+     "Node1",
+     "Node2",
+     "Node5"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "viz-en-1",
+   "step": "visualization",
+   "lang": "en",
+   "prompt": "Show me a Manhattan plot and the HLA-DRB1 amino-acid heatmap for RA in WTCCC_RA.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node2"
+    ],
+    [
+     "Node1",
+     "Node2"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "viz-ko-1",
+   "step": "visualization",
+   "lang": "ko",
+   "prompt": "WTCCC_RA의 연관분석 결과를 맨해튼 플롯과 히트맵으로 보고 싶어.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node2"
+    ],
+    [
+     "Node1",
+     "Node2"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "phase-en-1",
+   "step": "phasing",
+   "lang": "en",
+   "prompt": "I need phased HLA haplotypes for WTCCC_RA so that I can test amino-acid haplotypes for RA.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node4"
+    ],
+    [
+     "Node1",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "phase-ko-1",
+   "step": "phasing",
+   "lang": "ko",
+   "prompt": "WTCCC_RA marker panel을 BEAGLE로 phasing 해서 아미노산 단위 분석까지 해줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node4"
+    ],
+    [
+     "Node1",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "par-en-1",
+   "step": "parameters",
+   "lang": "en",
+   "prompt": "Use 1-field (2-digit) HLA allele resolution for the association test in WTCCC_RA.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node2"
+    ],
+    [
+     "Node1",
+     "Node2"
+    ]
+   ],
+   "params": {
+    "hla_resolution": "1field"
+   }
+  },
+  {
+   "id": "par-en-2",
+   "step": "parameters",
+   "lang": "en",
+   "prompt": "BMExample has no phenotype. Run Node1 to Node4 as a demonstration with a synthetic phenotype in which HLA-DRB1*15:01 carries an odds ratio of 3.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "BMExample",
+     "phenotype": [
+      "synthetic_spike_in",
+      "synthetic_null"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {
+    "spike_allele": "DRB1*15:01",
+    "spike_odds_ratio": 3.0
+   }
+  },
+  {
+   "id": "wf-v1-01",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: My workflow starts at node 1 -> then node 2 -> node 3 -> and ends at node 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-02",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The process goes from node 1 -> node 2 -> node 3 -> and finishes at node 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-03",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: I want the flow to go like this: 1 -> 2 -> 3 -> 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-04",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: Start at 1 -> move to 2 -> then 3 -> and wrap up at 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-05",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: From node 1 -> we pass through node 2 and node 3 -> and land at node 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-06",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: My process begins at 1 -> goes to 2 -> then 3 -> and stops at 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-07",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The path is node 1 -> node 2 -> node 3 -> node 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-08",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: First node is 1, last node is 4, and in between are 2 and 3.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-09",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The last step is node 4, the first step is node 1, and the middle steps are 2 and 3.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-10",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: In my workflow, 1 kicks things off, 4 is the finish line, and 2 and 3 happen in the middle.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-11",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: It starts at 1, goes through 2 and 3, and finishes with 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-12",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The process begins at node 1, passes node 2, continues to node 3, and ends at node 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-13",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The first node is 1, after that 2 and 3 come in, and finally node 4 wraps it up.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-14",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: My workflow’s first step is node 1, last step is node 4, and 2 and 3 fill the gap.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-15",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The order is: start at 1, then 2, then 3, and end with 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-16",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: My chain runs from 1 -> 2 -> 3 -> 4 without skipping any steps.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-17",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: The flow kicks off with 1, passes 2 and 3, and lands at 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-18",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: First node is 1, then you go to 2, then 3, and finally 4.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-19",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: My sequence is 1 -> 2 -> 3 -> 4 in a straight line.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-20",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: In this workflow, the start point is 1, the end point is 4, and 2 and 3 are right in the middle.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-v1-21",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Using WTCCC_RA: I want node1, then node2, then node3, then node4",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-en-trunc",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "For WTCCC_RA, stop after node 2.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2"
+    ],
+    [
+     "Node2"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-en-all",
+   "step": "workflow",
+   "lang": "en",
+   "prompt": "Run the complete HLA fine-mapping pipeline on WTCCC_RA and then meta-analyze it with NBS_CD.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    },
+    {
+     "dataset_id": "NBS_CD",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4",
+    "Node5"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4",
+     "Node5"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "wf-ko-1",
+   "step": "workflow",
+   "lang": "ko",
+   "prompt": "WTCCC_RA로 Node1부터 Node4까지 순서대로 해줘.",
+   "behavior": "propose",
+   "studies": [
+    {
+     "dataset_id": "WTCCC_RA",
+     "phenotype": [
+      "file"
+     ]
+    }
+   ],
+   "nodes": [
+    "Node1",
+    "Node2",
+    "Node3",
+    "Node4"
+   ],
+   "accept_nodes": [
+    [
+     "Node1",
+     "Node2",
+     "Node3",
+     "Node4"
+    ]
+   ],
+   "params": {}
+  },
+  {
+   "id": "clar-en-1",
+   "step": "clarification",
+   "lang": "en",
+   "prompt": "Run the HLA fine-mapping on my cohort.",
+   "behavior": "clarify"
+  },
+  {
+   "id": "clar-en-2",
+   "step": "clarification",
+   "lang": "en",
+   "prompt": "Run the association analysis on BMExample using its real phenotype.",
+   "behavior": "clarify"
+  },
+  {
+   "id": "clar-ko-1",
+   "step": "clarification",
+   "lang": "ko",
+   "prompt": "내 데이터로 분석해줘.",
+   "behavior": "clarify"
+  }
+ ],
+ "routing": [
+  {
+   "id": "route-qa-1",
+   "text": "Please answer briefly: Is HLA-DRB1 associated with RA?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-2",
+   "text": "What is the shared epitope hypothesis in rheumatoid arthritis?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-3",
+   "text": "How does CookHLA differ from SNP2HLA?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-4",
+   "text": "Why are amino-acid omnibus tests used in MHC fine-mapping?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-5",
+   "text": "HLA-B27이 강직성 척추염과 연관된 기전이 뭐야?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-6",
+   "text": "What does an I-squared of 60% mean in an HLA meta-analysis?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-7",
+   "text": "Explain the difference between 2-field and 4-field HLA nomenclature.",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-qa-8",
+   "text": "Which amino acids of HLA-DQB1 are linked to type 1 diabetes?",
+   "intent": "ask_hla"
+  },
+  {
+   "id": "route-an-1",
+   "text": "Run a logistic regression on WTCCC_RA.",
+   "intent": "request_analysis"
+  },
+  {
+   "id": "route-an-2",
+   "text": "Impute HLA alleles for GenotypeExample.",
+   "intent": "request_analysis"
+  },
+  {
+   "id": "route-an-3",
+   "text": "WTCCC_RA로 omnibus 검정 해줘.",
+   "intent": "request_analysis"
+  },
+  {
+   "id": "route-an-4",
+   "text": "Meta-analyze WTCCC_RA with NBS_CD.",
+   "intent": "request_analysis"
+  },
+  {
+   "id": "route-an-5",
+   "text": "Build the HLA marker panel for BMExample.",
+   "intent": "request_analysis"
+  },
+  {
+   "id": "route-an-6",
+   "text": "Please run node 1 to node 3 on WTCCC_RA.",
+   "intent": "request_analysis"
+  }
+ ]
+}

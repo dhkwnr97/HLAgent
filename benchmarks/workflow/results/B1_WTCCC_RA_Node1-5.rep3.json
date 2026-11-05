@@ -1,0 +1,101 @@
+{
+ "run_dir": "/home/user/HLAgent_v3/runs/bench_B1_WTCCC_RA_Node1-5_rep3_1792902386",
+ "state": "done",
+ "total_seconds": 271.627084,
+ "steps": [
+  {
+   "step": "Node1",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:26:28.362421Z",
+   "finished_at": "2026-10-25T04:27:04.568201Z",
+   "seconds": 36.20578,
+   "n_commands_recorded": 1,
+   "n_external_commands": 3,
+   "external_seconds": 0.098
+  },
+  {
+   "step": "Node2",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:27:04.569888Z",
+   "finished_at": "2026-10-25T04:27:30.787582Z",
+   "seconds": 26.217694,
+   "n_commands_recorded": 1,
+   "n_external_commands": 4,
+   "external_seconds": 0.377
+  },
+  {
+   "step": "Node3",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:27:30.789859Z",
+   "finished_at": "2026-10-25T04:27:31.083241Z",
+   "seconds": 0.293382,
+   "n_commands_recorded": 2,
+   "n_external_commands": 3,
+   "external_seconds": 0.298
+  },
+  {
+   "step": "Node4",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:30:46.393607Z",
+   "finished_at": "2026-10-25T04:30:52.861833Z",
+   "seconds": 6.468226,
+   "n_commands_recorded": 1,
+   "n_external_commands": 1,
+   "external_seconds": 6.064
+  },
+  {
+   "step": "StageD",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:26:28.290831Z",
+   "finished_at": "2026-10-25T04:26:28.361576Z",
+   "seconds": 0.070745,
+   "n_commands_recorded": 2,
+   "n_external_commands": 2,
+   "external_seconds": 0.019
+  },
+  {
+   "step": "StageP",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:27:31.084760Z",
+   "finished_at": "2026-10-25T04:30:46.391912Z",
+   "seconds": 195.307152,
+   "n_commands_recorded": 4,
+   "n_external_commands": 7,
+   "external_seconds": 193.375
+  },
+  {
+   "step": "Node5",
+   "study_id": null,
+   "status": "warning",
+   "started_at": "2026-10-25T04:30:52.863670Z",
+   "finished_at": "2026-10-25T04:30:55.498521Z",
+   "seconds": 2.634851,
+   "n_commands_recorded": 0,
+   "n_external_commands": 0,
+   "external_seconds": 0
+  },
+  {
+   "step": "StageR",
+   "study_id": null,
+   "status": "ok",
+   "started_at": "2026-10-25T04:30:55.499939Z",
+   "finished_at": "2026-10-25T04:30:59.916210Z",
+   "seconds": 4.416271,
+   "n_commands_recorded": 0,
+   "n_external_commands": 0,
+   "external_seconds": 0
+  }
+ ],
+ "n_external_commands": 11,
+ "external_seconds": 199.537,
+ "scenario": "B1_WTCCC_RA_Node1-5",
+ "rep": 3,
+ "process_wall_seconds": 274.053,
+ "returncode": 0
+}

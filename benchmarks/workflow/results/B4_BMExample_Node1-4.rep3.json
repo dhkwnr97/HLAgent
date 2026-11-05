@@ -1,0 +1,90 @@
+{
+ "run_dir": "/home/user/HLAgent_v3/runs/bench_B4_BMExample_Node1-4_rep3_1792903976",
+ "state": "done",
+ "total_seconds": 60.594038,
+ "steps": [
+  {
+   "step": "Node1",
+   "study_id": "BMExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:52:58.635252Z",
+   "finished_at": "2026-10-25T04:53:02.789899Z",
+   "seconds": 4.154647,
+   "n_commands_recorded": 1,
+   "n_external_commands": 4,
+   "external_seconds": 0.057
+  },
+  {
+   "step": "Node2",
+   "study_id": "BMExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:53:02.791971Z",
+   "finished_at": "2026-10-25T04:53:19.239360Z",
+   "seconds": 16.447389,
+   "n_commands_recorded": 1,
+   "n_external_commands": 3,
+   "external_seconds": 0.083
+  },
+  {
+   "step": "Node3",
+   "study_id": "BMExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:53:19.241070Z",
+   "finished_at": "2026-10-25T04:53:19.318655Z",
+   "seconds": 0.077585,
+   "n_commands_recorded": 1,
+   "n_external_commands": 2,
+   "external_seconds": 0.051
+  },
+  {
+   "step": "Node4",
+   "study_id": "BMExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:53:54.384518Z",
+   "finished_at": "2026-10-25T04:53:56.177201Z",
+   "seconds": 1.792683,
+   "n_commands_recorded": 1,
+   "n_external_commands": 2,
+   "external_seconds": 1.465
+  },
+  {
+   "step": "StageD",
+   "study_id": "BMExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:52:58.434380Z",
+   "finished_at": "2026-10-25T04:52:58.633866Z",
+   "seconds": 0.199486,
+   "n_commands_recorded": 3,
+   "n_external_commands": 3,
+   "external_seconds": 0.025
+  },
+  {
+   "step": "StageP",
+   "study_id": "BMExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:53:19.319998Z",
+   "finished_at": "2026-10-25T04:53:54.382894Z",
+   "seconds": 35.062896,
+   "n_commands_recorded": 4,
+   "n_external_commands": 6,
+   "external_seconds": 34.67
+  },
+  {
+   "step": "StageR",
+   "study_id": null,
+   "status": "ok",
+   "started_at": "2026-10-25T04:53:56.178909Z",
+   "finished_at": "2026-10-25T04:53:59.026700Z",
+   "seconds": 2.847791,
+   "n_commands_recorded": 0,
+   "n_external_commands": 0,
+   "external_seconds": 0
+  }
+ ],
+ "n_external_commands": 11,
+ "external_seconds": 36.165,
+ "scenario": "B4_BMExample_Node1-4",
+ "rep": 3,
+ "process_wall_seconds": 62.834,
+ "returncode": 0
+}

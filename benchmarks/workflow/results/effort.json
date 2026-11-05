@@ -1,0 +1,560 @@
+[
+ {
+  "scenario": "B1_WTCCC_RA_Node1-5",
+  "conventional": {
+   "n_commands": 8,
+   "n_units": 67,
+   "n_chars": 1147,
+   "n_tools": 7,
+   "tools": [
+    "awk",
+    "head",
+    "plink",
+    "printf",
+    "python HATK.py",
+    "sort",
+    "wc"
+   ],
+   "n_files_named": 5,
+   "n_handoffs": 4,
+   "n_decisions": 3,
+   "decisions": [
+    "confirm the genome build of the genotypes (HATK leaves build consistency to the user)",
+    "round 1: compare the top P with the Bonferroni threshold and choose the conditioning marker",
+    "round 2: decide to stop"
+   ],
+   "not_covered": [
+    "forest plots of the top meta-analysis markers",
+    "meta-analysis Manhattan plot",
+    "report with numbers checked against the result tables",
+    "provenance bundle (reproduce.sh, locks, hashes)"
+   ],
+   "commands": [
+    {
+     "step": "Stage D",
+     "n_chars": 202,
+     "n_units": 13,
+     "tools": [
+      "plink"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "PLINK 1.9",
+     "line": "plink --bfile wtccc_filtered_58C_RA.hatk.300+300.hg18.chr6.29-34mb --chr 6 --from-mb 29 --to-mb 34 --geno 0.05 --mind 0.05 --maf 0.01 --hwe 1e-6 --make-bed --allow-no-sex --keep-allele-order --out RA.qc"
+    },
+    {
+     "step": "Node1-2, Stage P, Node4",
+     "n_chars": 257,
+     "n_units": 13,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v2 README, whole pipeline",
+     "line": "python HATK.py --hg 18 --chped wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.chped --bfile RA.qc --pheno wtccc_filtered_58C_RA.hatk.300+300.phe --pheno-name RA --imgt 3320 --imgt-dir IMGTHLA3320 --multiprocess 4 --out hatk/RA --java-mem 4g --nthreads 4"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 54,
+     "n_units": 6,
+     "tools": [
+      "awk",
+      "wc"
+     ],
+     "n_outputs_named": 0,
+     "n_handoffs": 0,
+     "source": "Bonferroni denominator",
+     "line": "awk 'NR>1 && $12!=\"NA\"' hatk/RA.assoc.logistic | wc -l"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 48,
+     "n_units": 6,
+     "tools": [
+      "sort",
+      "head"
+     ],
+     "n_outputs_named": 0,
+     "n_handoffs": 0,
+     "source": "round 1 top marker",
+     "line": "sort -g -k 12 hatk/RA.assoc.logistic | head -n 3"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 62,
+     "n_units": 5,
+     "tools": [
+      "printf"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "",
+     "line": "printf '%s\\n' SNPS_DQA1_348_32713561_intron1 > cond.round2.txt"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 197,
+     "n_units": 10,
+     "tools": [
+      "plink"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "PLINK 1.9",
+     "line": "plink --bfile hatk/RA --pheno wtccc_filtered_58C_RA.hatk.300+300.phe --pheno-name RA --logistic hide-covar --ci 0.95 --condition-list cond.round2.txt --allow-no-sex --keep-allele-order --out round2"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 47,
+     "n_units": 6,
+     "tools": [
+      "sort",
+      "head"
+     ],
+     "n_outputs_named": 0,
+     "n_handoffs": 0,
+     "source": "round 2 top marker",
+     "line": "sort -g -k 12 round2.assoc.logistic | head -n 3"
+    },
+    {
+     "step": "Node5",
+     "n_chars": 280,
+     "n_units": 8,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 0,
+     "source": "HATK v1 docs 4-3 (not exposed by the v2 command line)",
+     "line": "python HATK.py --metaanalysis --s1-logistic-result hatk/RA.assoc.logistic --s1-bim hatk/RA.bim --s2-logistic-result RESULT_EXAMPLE_wtccc_filtered_NBS_CD.hatk.300+300.chr6.hg18.assoc.logistic --s2-bim RESULT_EXAMPLE_wtccc_filtered_NBS_CD.hatk.300+300.chr6.hg18.bim --out meta/RA_CD"
+    }
+   ],
+   "klm_seconds_skilled": 325.5,
+   "klm_seconds_average": 417.9
+  },
+  "hlagent": {
+   "request": "Run the complete HLA fine-mapping pipeline on WTCCC_RA and then meta-analyze it with NBS_CD.",
+   "n_chars": 92,
+   "n_clicks": 1,
+   "n_commands": 0,
+   "klm_seconds_skilled": 23.0,
+   "klm_seconds_average": 30.4
+  }
+ },
+ {
+  "scenario": "B2_WTCCC_RA_Node4_cond_DRB1_96",
+  "conventional": {
+   "n_commands": 3,
+   "n_units": 35,
+   "n_chars": 633,
+   "n_tools": 2,
+   "tools": [
+    "plink",
+    "python HATK.py"
+   ],
+   "n_files_named": 3,
+   "n_handoffs": 2,
+   "n_decisions": 1,
+   "decisions": [
+    "confirm the genome build of the genotypes"
+   ],
+   "not_covered": [
+    "omnibus Manhattan plot of the conditional test",
+    "report and provenance bundle"
+   ],
+   "commands": [
+    {
+     "step": "Stage D",
+     "n_chars": 202,
+     "n_units": 13,
+     "tools": [
+      "plink"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "PLINK 1.9",
+     "line": "plink --bfile wtccc_filtered_58C_RA.hatk.300+300.hg18.chr6.29-34mb --chr 6 --from-mb 29 --to-mb 34 --geno 0.05 --mind 0.05 --maf 0.01 --hwe 1e-6 --make-bed --allow-no-sex --keep-allele-order --out RA.qc"
+    },
+    {
+     "step": "Node1-2, Stage P, Node4",
+     "n_chars": 257,
+     "n_units": 13,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v2 README, whole pipeline",
+     "line": "python HATK.py --hg 18 --chped wtccc_filtered_58C_RA.hatk.300+300.imgt3320.2field.chped --bfile RA.qc --pheno wtccc_filtered_58C_RA.hatk.300+300.phe --pheno-name RA --imgt 3320 --imgt-dir IMGTHLA3320 --multiprocess 4 --out hatk/RA --java-mem 4g --nthreads 4"
+    },
+    {
+     "step": "Node4",
+     "n_chars": 174,
+     "n_units": 9,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 0,
+     "source": "HATK v1 docs 4-1",
+     "line": "python3 HATK.py --omnibus --fam hatk/RA.fam --phased hatk/RA.bgl.phased --out omnibus/RA --pheno wtccc_filtered_58C_RA.hatk.300+300.phe --pheno-name RA --condition AA_DRB1_96"
+    }
+   ],
+   "klm_seconds_skilled": 175.8,
+   "klm_seconds_average": 226.7
+  },
+  "hlagent": {
+   "request": "Run the omnibus test in WTCCC_RA conditioned on HLA-DRB1 amino-acid position 96 (AA_DRB1_96).",
+   "n_chars": 93,
+   "n_clicks": 1,
+   "n_commands": 0,
+   "klm_seconds_skilled": 23.2,
+   "klm_seconds_average": 30.7
+  }
+ },
+ {
+  "scenario": "B3_GenotypeExample_CookHLA_Node1-2",
+  "conventional": {
+   "n_commands": 12,
+   "n_units": 98,
+   "n_chars": 1959,
+   "n_tools": 7,
+   "tools": [
+    "awk",
+    "cut",
+    "docker",
+    "plink",
+    "python HATK.py",
+    "sort",
+    "uniq"
+   ],
+   "n_files_named": 11,
+   "n_handoffs": 7,
+   "n_decisions": 4,
+   "decisions": [
+    "identify the genome build (hg19) for CookHLA and pick the hg18 copy of the genotypes for HATK",
+    "choose the reference panel and check that an adaptive genetic map matches it",
+    "decide how to treat genes the panel cannot impute (DPA1, DPB1, DQA1)",
+    "decide what to do about the constant phenotype"
+   ],
+   "not_covered": [
+    "imputation QC summary (per-gene confidence, DR2)",
+    "report and provenance bundle"
+   ],
+   "commands": [
+    {
+     "step": "Stage D",
+     "n_chars": 124,
+     "n_units": 9,
+     "tools": [
+      "plink"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "PLINK 1.9",
+     "line": "plink --bfile 1958BC.hg19 --chr 6 --geno 0.05 --mind 0.05 --make-bed --allow-no-sex --keep-allele-order --out 1958BC.hg19.qc"
+    },
+    {
+     "step": "Stage I",
+     "n_chars": 484,
+     "n_units": 13,
+     "tools": [
+      "docker"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "CookHLA README (Docker); CookHLA lifts hg19 input down to the hg18 panel itself",
+     "line": "docker run --rm --user $(id -u):$(id -g) -v $PWD:/data -w /data dhkwnr97/cookhla@sha256:0b374cef9cc352cfaa7aa5e89ad49d5b6c64274a6eb8100acbb7f6f452f0c5d6 CookHLA.py -i 1958BC.hg19.qc -hg 19 -o out/1958BC+1000G_REF.EUR -ref ref/1000G_REF.EUR.chr6.hg18.29mb-34mb.inT1DGC -gm AGM.1958BC.hg19.COPY.LiftDown_hg18.NoAmbig+1000G_REF.EUR.chr6.hg18.29mb-34mb.inT1DGC.mach_step.avg.clpsB -ae AGM.1958BC.hg19.COPY.LiftDown_hg18.NoAmbig+1000G_REF.EUR.chr6.hg18.29mb-34mb.inT1DGC.aver.erate -mem 4g"
+    },
+    {
+     "step": "Stage I",
+     "n_chars": 105,
+     "n_units": 12,
+     "tools": [
+      "awk",
+      "cut",
+      "sort",
+      "uniq"
+     ],
+     "n_outputs_named": 0,
+     "n_handoffs": 0,
+     "source": "low-confidence calls per gene",
+     "line": "awk '$8 < 0.8' out/1958BC+1000G_REF.EUR.MHC.HLA_IMPUTATION_OUT.alleles | cut -d ' ' -f 3 | sort | uniq -c"
+    },
+    {
+     "step": "Node1",
+     "n_chars": 167,
+     "n_units": 8,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v1 docs 3",
+     "line": "python3 HATK.py --nomencleaner --hat HLA_ALLELE_TABLE.imgt3320.hat --hped out/1958BC+1000G_REF.EUR.MHC.HLA_IMPUTATION_OUT.hped --out 1958BC.2field --2field --imgt 3320"
+    },
+    {
+     "step": "Node1",
+     "n_chars": 234,
+     "n_units": 9,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v1 docs 2",
+     "line": "python3 HATK.py --bmarkergenerator --variants out/1958BC.hg19.qc.COPY.LiftDown_hg18.NoAmbig --chped 1958BC.2field.chped --out panel/1958BC --hg 18 --dict-AA HLA_DICTIONARY_AA.hg18.imgt3320 --dict-SNPS HLA_DICTIONARY_SNPS.hg18.imgt3320"
+    },
+    {
+     "step": "Node2",
+     "n_chars": 118,
+     "n_units": 5,
+     "tools": [
+      "awk"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "synthetic null phenotype",
+     "line": "awk 'BEGIN{print \"FID IID SYNTHETIC\"; srand(20261023)} {print $1, $2, (rand()<0.5)?2:1}' 1958BC.hg19.qc.fam > null.phe"
+    },
+    {
+     "step": "Node2",
+     "n_chars": 105,
+     "n_units": 7,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v1 docs 4-2",
+     "line": "python HATK.py --logistic --input panel/1958BC --pheno-name SYNTHETIC --pheno null.phe --out assoc/1958BC"
+    },
+    {
+     "step": "Node2 plots",
+     "n_chars": 98,
+     "n_units": 7,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v1 docs 5-1",
+     "line": "python HATK.py --manhattan --ar assoc/1958BC.assoc.logistic --imgt 3320 --hg 18 --out plots/1958BC"
+    },
+    {
+     "step": "Node2 plots",
+     "n_chars": 128,
+     "n_units": 7,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 0,
+     "source": "HATK v1 docs 5-2",
+     "line": "python HATK.py --heatmap --ar assoc/1958BC.assoc.logistic --HLA A --maptable HLA_MAPTABLE_A.hg18.imgt3320.txt --out plots/1958BC"
+    },
+    {
+     "step": "Node2 plots",
+     "n_chars": 128,
+     "n_units": 7,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 0,
+     "source": "HATK v1 docs 5-2",
+     "line": "python HATK.py --heatmap --ar assoc/1958BC.assoc.logistic --HLA C --maptable HLA_MAPTABLE_C.hg18.imgt3320.txt --out plots/1958BC"
+    },
+    {
+     "step": "Node2 plots",
+     "n_chars": 134,
+     "n_units": 7,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 0,
+     "source": "HATK v1 docs 5-2",
+     "line": "python HATK.py --heatmap --ar assoc/1958BC.assoc.logistic --HLA DQB1 --maptable HLA_MAPTABLE_DQB1.hg18.imgt3320.txt --out plots/1958BC"
+    },
+    {
+     "step": "Node2 plots",
+     "n_chars": 134,
+     "n_units": 7,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 0,
+     "source": "HATK v1 docs 5-2",
+     "line": "python HATK.py --heatmap --ar assoc/1958BC.assoc.logistic --HLA DRB1 --maptable HLA_MAPTABLE_DRB1.hg18.imgt3320.txt --out plots/1958BC"
+    }
+   ],
+   "klm_seconds_skilled": 531.9,
+   "klm_seconds_average": 689.6
+  },
+  "hlagent": {
+   "request": "GenotypeExample only has SNP array genotypes. Impute the classical HLA alleles with CookHLA, build the HLA binary marker panel and test the markers for association.",
+   "n_chars": 164,
+   "n_clicks": 2,
+   "n_commands": 0,
+   "klm_seconds_skilled": 40.5,
+   "klm_seconds_average": 53.7
+  }
+ },
+ {
+  "scenario": "B4_BMExample_Node1-4",
+  "conventional": {
+   "n_commands": 9,
+   "n_units": 73,
+   "n_chars": 1077,
+   "n_tools": 8,
+   "tools": [
+    "awk",
+    "cut",
+    "head",
+    "plink",
+    "python",
+    "python HATK.py",
+    "sort",
+    "wc"
+   ],
+   "n_files_named": 7,
+   "n_handoffs": 7,
+   "n_decisions": 5,
+   "decisions": [
+    "recognise that the positions match no standard build and choose a re-mapping strategy",
+    "restrict association to founders (family data)",
+    "identify untyped genes in the 4-field typing and remove them",
+    "decide how to obtain a phenotype for a demonstration run",
+    "round 1: compare the top P with the Bonferroni threshold and stop"
+   ],
+   "not_covered": [
+    "report and provenance bundle"
+   ],
+   "commands": [
+    {
+     "step": "Stage D",
+     "n_chars": 137,
+     "n_units": 6,
+     "tools": [
+      "awk"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "rsID-based re-mapping to hg18",
+     "line": "awk 'NR==FNR{pos[$2]=$4; next} ($2 in pos){print $2\"\\t\"pos[$2]}' 1000G_REF.EUR.chr6.hg18.29mb-34mb.inT1DGC.bim HAPMAP_CEU.bim > remap.txt"
+    },
+    {
+     "step": "Stage D",
+     "n_chars": 128,
+     "n_units": 8,
+     "tools": [
+      "plink"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "PLINK 1.9",
+     "line": "plink --bfile HAPMAP_CEU --extract remap.txt --update-map remap.txt --make-bed --allow-no-sex --keep-allele-order --out CEU.hg18"
+    },
+    {
+     "step": "Stage D",
+     "n_chars": 177,
+     "n_units": 14,
+     "tools": [
+      "plink"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "PLINK 1.9",
+     "line": "plink --bfile CEU.hg18 --chr 6 --from-mb 29 --to-mb 34 --filter-founders --geno 0.05 --mind 0.05 --maf 0.01 --hwe 1e-6 --make-bed --allow-no-sex --keep-allele-order --out CEU.qc"
+    },
+    {
+     "step": "Node1",
+     "n_chars": 71,
+     "n_units": 4,
+     "tools": [
+      "cut"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "drop untyped DPA1/DPB1 columns (all '0'), which break HATK's positional gene layout",
+     "line": "cut -f 1-12,17-22 HAPMAP_CEU_HLA.imgt3320.4field.chped > CEU.noDP.chped"
+    },
+    {
+     "step": "Node1",
+     "n_chars": 126,
+     "n_units": 8,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v1 docs 3",
+     "line": "python3 HATK.py --nomencleaner --hat HLA_ALLELE_TABLE.imgt3320.hat --hped CEU.noDP.chped --out CEU.2field --2field --imgt 3320"
+    },
+    {
+     "step": "Node2",
+     "n_chars": 137,
+     "n_units": 8,
+     "tools": [
+      "python"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "user-written script: no standard tool simulates a spike-in phenotype",
+     "line": "python spike_in_phenotype.py --chped CEU.2field.chped --fam CEU.qc.fam --allele DRB1*15:01 --odds-ratio 5 --seed 20261023 --out spike.phe"
+    },
+    {
+     "step": "Node1-2, Stage P, Node4",
+     "n_chars": 197,
+     "n_units": 13,
+     "tools": [
+      "python HATK.py"
+     ],
+     "n_outputs_named": 1,
+     "n_handoffs": 1,
+     "source": "HATK v2 README, whole pipeline",
+     "line": "python HATK.py --hg 18 --chped CEU.2field.chped --bfile CEU.qc --pheno spike.phe --pheno-name SYNTHETIC --imgt 3320 --imgt-dir IMGTHLA3320 --multiprocess 4 --out hatk/CEU --java-mem 4g --nthreads 4"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 55,
+     "n_units": 6,
+     "tools": [
+      "awk",
+      "wc"
+     ],
+     "n_outputs_named": 0,
+     "n_handoffs": 0,
+     "source": "Bonferroni denominator",
+     "line": "awk 'NR>1 && $12!=\"NA\"' hatk/CEU.assoc.logistic | wc -l"
+    },
+    {
+     "step": "Node3",
+     "n_chars": 49,
+     "n_units": 6,
+     "tools": [
+      "sort",
+      "head"
+     ],
+     "n_outputs_named": 0,
+     "n_handoffs": 0,
+     "source": "round 1 top marker",
+     "line": "sort -g -k 12 hatk/CEU.assoc.logistic | head -n 3"
+    }
+   ],
+   "klm_seconds_skilled": 322.5,
+   "klm_seconds_average": 409.4
+  },
+  "hlagent": {
+   "request": "Use BMExample: build the HLA marker panel, test association, run stepwise conditional analysis and the omnibus test.",
+   "n_chars": 116,
+   "n_clicks": 2,
+   "n_commands": 0,
+   "klm_seconds_skilled": 30.9,
+   "klm_seconds_average": 40.2
+  }
+ }
+]

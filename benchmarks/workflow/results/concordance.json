@@ -1,0 +1,315 @@
+{
+ "determinism": {
+  "B1_WTCCC_RA_Node1-5": {
+   "WTCCC_RA/node1/panel.bed": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "WTCCC_RA/node2/assoc.assoc.logistic": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "WTCCC_RA/node3/conditional_steps.tsv": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "WTCCC_RA/stagep/panel.bgl.phased": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "WTCCC_RA/node4/omnibus.RA.NA.omnibus": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "node5/meta.tsv": {
+    "n_reps": 3,
+    "identical": true
+   }
+  },
+  "B2_WTCCC_RA_Node4_cond_DRB1_96": {
+   "WTCCC_RA/node4/omnibus.RA.AA_DRB1_96.omnibus": {
+    "n_reps": 3,
+    "identical": true
+   }
+  },
+  "B3_GenotypeExample_CookHLA_Node1-2": {
+   "GenotypeExample/node1/panel.bed": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "GenotypeExample/node2/assoc.assoc.logistic": {
+    "n_reps": 3,
+    "identical": true
+   }
+  },
+  "B4_BMExample_Node1-4": {
+   "BMExample/node2/assoc.assoc.logistic": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "BMExample/stagep/panel.bgl.phased": {
+    "n_reps": 3,
+    "identical": true
+   },
+   "BMExample/node4/omnibus.SYNTHETIC.NA.omnibus": {
+    "n_reps": 3,
+    "identical": true
+   }
+  }
+ },
+ "node2_regression": {
+  "n_published": 10320,
+  "n_hlagent": 9814,
+  "n_shared_tested": 9814,
+  "OR_identical_fraction": 1.0,
+  "OR_max_rel_diff": 0.0,
+  "SE_identical_fraction": 1.0,
+  "SE_max_rel_diff": 0.0,
+  "P_identical_fraction": 1.0,
+  "P_max_rel_diff": 0.0,
+  "A1_identical_fraction": 1.0,
+  "max_abs_diff_minus_log10P": 0.0,
+  "pearson_minus_log10P": 1.0,
+  "top_marker_published": "SNPS_DQA1_348_32713561_intron1",
+  "top_marker_hlagent": "SNPS_DQA1_348_32713561_intron1",
+  "by_type": {
+   "AA": {
+    "n": 580,
+    "P_identical_fraction": 1.0
+   },
+   "HLA": {
+    "n": 144,
+    "P_identical_fraction": 1.0
+   },
+   "INS": {
+    "n": 138,
+    "P_identical_fraction": 1.0
+   },
+   "SNP": {
+    "n": 14,
+    "P_identical_fraction": 1.0
+   },
+   "SNPS": {
+    "n": 7858,
+    "P_identical_fraction": 1.0
+   },
+   "rs": {
+    "n": 1080,
+    "P_identical_fraction": 1.0
+   }
+  },
+  "published_only": {
+   "n": 506,
+   "by_type": {
+    "SNPS": 506
+   },
+   "n_minor_allele_dot": 506,
+   "n_dot_major_allele_markers_kept": 452
+  },
+  "_table": "B1.node2_vs_published.tsv"
+ },
+ "node1_panel": {
+  "n_markers_compared": 8837,
+  "n_samples": 600,
+  "n_genotypes_compared": 5089993,
+  "n_mismatches": 0,
+  "by_type": {
+   "HLA_": 163,
+   "AA_": 597,
+   "SNPS_": 7936,
+   "INS_": 141
+  }
+ },
+ "stagep_phasing_invariant": {
+  "checked": 5488729,
+  "mismatched": 0,
+  "skipped_missing": 469871,
+  "markers": 9931
+ },
+ "stagep_phasing_inputs": {
+  "published_bgl_phased_markers": 37486,
+  "hlagent_bgl_phased_markers": 9931
+ },
+ "node4_omnibus_unconditioned": {
+  "n_published": 383,
+  "n_hlagent": 383,
+  "n_shared_tested": 383,
+  "deltaDF_identical_fraction": 0.9947780678851175,
+  "residues_identical_fraction": 0.9947780678851175,
+  "spearman_minus_log10P": 0.9813161401387315,
+  "pearson_minus_log10P": 0.9981268246227426,
+  "max_abs_diff_log10P": 0.695212015279079,
+  "top_published": "AA_DRB1_96",
+  "top_published_log10P": -9.66952786348163,
+  "top_hlagent": "AA_DRB1_96",
+  "top_hlagent_log10P": -10.2355465872277
+ },
+ "node4_on_published_haplotypes": {
+  "NA": {
+   "n_published": 383,
+   "n_hlagent": 383,
+   "n_shared_tested": 383,
+   "deltaDF_identical_fraction": 1.0,
+   "residues_identical_fraction": 1.0,
+   "spearman_minus_log10P": 0.9815412015359535,
+   "pearson_minus_log10P": 0.9981622009279887,
+   "max_abs_diff_log10P": 0.695212015279079,
+   "top_published": "AA_DRB1_96",
+   "top_published_log10P": -9.66952786348163,
+   "top_hlagent": "AA_DRB1_96",
+   "top_hlagent_log10P": -10.2355465872276
+  },
+  "AA_DRB1_96": {
+   "n_published": 383,
+   "n_hlagent": 383,
+   "n_shared_tested": 383,
+   "deltaDF_identical_fraction": 1.0,
+   "residues_identical_fraction": 1.0,
+   "spearman_minus_log10P": 0.9540314288221887,
+   "pearson_minus_log10P": 0.9765951259513123,
+   "max_abs_diff_log10P": 0.528675893198274,
+   "top_published": "AA_B_109",
+   "top_published_log10P": -1.95710234094112,
+   "top_hlagent": "AA_B_109",
+   "top_hlagent_log10P": -1.96010202363127
+  }
+ },
+ "node5_meta_recomputed": {
+  "n_markers": 8703,
+  "k": 2,
+  "max_abs_diff_BETA_FE": 0.0,
+  "max_abs_diff_SE_FE": 1.1102230246251565e-16,
+  "max_abs_diff_log10_P_FE": 1.3322676295501878e-15,
+  "max_abs_diff_Q": 0.0,
+  "max_abs_diff_I2": 0.0,
+  "max_abs_diff_TAU2": 0.0,
+  "max_abs_diff_BETA_RE": 0.0,
+  "max_abs_diff_log10_P_RE": 1.3322676295501878e-15
+ },
+ "node4_omnibus_conditioned_DRB1_96": {
+  "n_published": 383,
+  "n_hlagent": 383,
+  "n_shared_tested": 383,
+  "deltaDF_identical_fraction": 0.9817232375979112,
+  "residues_identical_fraction": 0.9947780678851175,
+  "spearman_minus_log10P": 0.9216891837721857,
+  "pearson_minus_log10P": 0.9435527273815358,
+  "max_abs_diff_log10P": 0.5286758931984139,
+  "top_published": "AA_B_109",
+  "top_published_log10P": -1.95710234094112,
+  "top_hlagent": "AA_DPA1_28",
+  "top_hlagent_log10P": -2.20889302635784
+ },
+ "node4_own_vs_published_phase": {
+  "NA": {
+   "n": 383,
+   "n_identical": 372,
+   "max_abs_diff_log10P": 0.16182486210851987,
+   "spearman": 0.9996245269068522,
+   "top3_own": [
+    "AA_DRB1_96",
+    "AA_DRB1_13",
+    "AA_DRB1_180"
+   ],
+   "top3_published_phase": [
+    "AA_DRB1_96",
+    "AA_DRB1_13",
+    "AA_DRB1_180"
+   ]
+  },
+  "AA_DRB1_96": {
+   "n": 383,
+   "n_identical": 54,
+   "max_abs_diff_log10P": 0.44510421460994,
+   "spearman": 0.9594296949675953,
+   "top3_own": [
+    "AA_DPB1_215",
+    "AA_DPA1_28",
+    "AA_B_109"
+   ],
+   "top3_published_phase": [
+    "AA_B_109",
+    "AA_DPB1_215",
+    "AA_DPA1_28"
+   ]
+  },
+  "published_aa_malformed_lines": 2
+ },
+ "stagei_cookhla_vs_v1": {
+  "file": "GenotypeExample+1000G_REF.EUR.MHC.HLA_IMPUTATION_OUT.alleles",
+  "n_genotypes": 50,
+  "by_gene": {
+   "A": {
+    "alleles_1field": 0.9,
+    "alleles_2field": 0.9
+   },
+   "B": {
+    "alleles_1field": 1.0,
+    "alleles_2field": 0.9
+   },
+   "C": {
+    "alleles_1field": 1.0,
+    "alleles_2field": 1.0
+   },
+   "DQB1": {
+    "alleles_1field": 1.0,
+    "alleles_2field": 0.8
+   },
+   "DRB1": {
+    "alleles_1field": 1.0,
+    "alleles_2field": 1.0
+   }
+  },
+  "alleles_1field_identical_fraction": 0.98,
+  "alleles_2field_identical_fraction": 0.92,
+  "max_abs_diff_conf": 0.30921095690603495,
+  "discordant_2field": [
+   {
+    "IID": "WTCCC66133",
+    "gene": "A",
+    "alleles_2field_hla": "0101,0101",
+    "conf_hla": 0.925,
+    "alleles_2field_v1": "0101,0205",
+    "conf_v1": 0.956989247311828
+   },
+   {
+    "IID": "WTCCC66097",
+    "gene": "B",
+    "alleles_2field_hla": "0702,2702",
+    "conf_hla": 0.70221066319896,
+    "alleles_2field_v1": "0702,2705",
+    "conf_v1": 0.676584734799483
+   },
+   {
+    "IID": "WTCCC66073",
+    "gene": "DQB1",
+    "alleles_2field_hla": "0301,0303",
+    "conf_hla": 0.62589928057554,
+    "alleles_2field_v1": "0301,0301",
+    "conf_v1": 0.380368098159509
+   },
+   {
+    "IID": "WTCCC66133",
+    "gene": "DQB1",
+    "alleles_2field_hla": "0602,0303",
+    "conf_hla": 0.548387096774193,
+    "alleles_2field_v1": "0602,0301",
+    "conf_v1": 0.472622478386167
+   }
+  ],
+  "inputs": {
+   "n_snps_v1": 1097,
+   "n_snps_hlagent": 1102,
+   "n_shared": 1097,
+   "n_shared_same_bp": 1097,
+   "n_shared_genotype_identical": 1097,
+   "hlagent_only": [
+    "rs1042337",
+    "rs11244",
+    "rs2581",
+    "rs2582",
+    "rs3819299"
+   ]
+  }
+ }
+}

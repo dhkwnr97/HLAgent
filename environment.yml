@@ -1,0 +1,21 @@
+# System and bioinformatics tools for HLAgent v3 (WSL2 Ubuntu 22.04).
+# Python packages are installed with uv afterwards (see README):
+#   mamba env create -f environment.yml && mamba activate hlagent3
+#   uv pip install --python "$CONDA_PREFIX/bin/python" -e ".[dev]"
+# After the first solve, pin exact builds: mamba env export > environment.lock.yml
+name: hlagent3
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12
+  - uv
+  - plink=1.90        # PLINK 1.9: HATK-identical association tests (binary name: plink)
+  - plink2           # optional Firth fallback, VCF import
+  - openjdk=17        # BEAGLE 3.3.2 and BEAGLE utilities (third_party/beagle)
+  - r-base>=4.3      # HATK omnibus test and heatmap
+  - r-gplots
+  - r-rcolorbrewer
+  - r-shape
+  - htslib           # bgzip/tabix
+  - bcftools

@@ -1,0 +1,87 @@
+[project]
+name = "hlagent"
+version = "3.0.0.dev0"
+description = "HLAgent v3: HLA expert Q&A and approval-gated HLA analysis pipeline (CookHLA, BEAGLE, HATK)"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = { text = "Code: MIT. Vendored HATK/CookHLA: non-commercial academic use only" }
+dependencies = [
+  "pydantic-ai-slim[google,openai,anthropic,tavily,typesafe]>=2.59,<3",
+  "pydantic>=2.12",
+  "pydantic-settings>=2.16",
+  "streamlit>=1.66,<2",
+  "chromadb>=1.5,<2",
+  "pymupdf>=2.0",  # ships the pymupdf4llm module (to_markdown) since 2.0
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "scipy>=1.13",
+  "matplotlib>=3.9",
+  "seaborn>=0.13",
+  "plotly>=5.24",
+  "requests>=2.32",
+  "pyyaml>=6",
+  "python-dotenv>=1.0",
+  "jinja2>=3.1",
+  "markdown>=3.6",
+  "typer>=0.12",
+]
+
+[project.optional-dependencies]
+local-embed = ["pydantic-ai-slim[sentence-transformers]>=2.59,<3"]
+pdf = ["weasyprint>=62"]
+obs = ["logfire>=4"]
+dev = ["pytest>=8", "pytest-asyncio>=0.24", "ruff>=0.6", "pyright>=1.1.380"]
+
+[project.scripts]
+hlagent = "hlagent.cli:app"
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hlagent", "vendor/hatk_port"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"vendor/hatk_port/IMGT2Seq/data_for_imgt2seq" = "hatk_port/IMGT2Seq/data_for_imgt2seq"
+"vendor/hatk_port/OmnibusTest/OmnibusTest_BHv5.R" = "hatk_port/OmnibusTest/OmnibusTest_BHv5.R"
+"vendor/hatk_port/OmnibusTest/src/AllCC_Get_Phased_AA_Calls.R" = "hatk_port/OmnibusTest/src/AllCC_Get_Phased_AA_Calls.R"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "golden: reproduce published HATK/CookHLA outputs (needs plink, R, resources)",
+  "slow: end-to-end scenarios (may need Docker)",
+]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = ["vendor"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S603", "S604"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/hlagent/cli.py" = ["B008"]  # typer.Option defaults are the typer idiom
+
+[tool.pyright]
+include = ["src"]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "basic"
+# pandas' typed unions (Series | DataFrame | ndarray | NAType ...) produce many false positives in
+# vectorised code; keep them visible as warnings, fail only on the remaining error classes.
+reportAttributeAccessIssue = "warning"
+reportArgumentType = "warning"
+reportCallIssue = "warning"
+reportIndexIssue = "warning"
+reportOperatorIssue = "warning"
+reportReturnType = "warning"
+reportAssignmentType = "warning"
+reportGeneralTypeIssues = "warning"
+extraPaths = ["vendor"]
+exclude = ["vendor"]
+pythonVersion = "3.12"

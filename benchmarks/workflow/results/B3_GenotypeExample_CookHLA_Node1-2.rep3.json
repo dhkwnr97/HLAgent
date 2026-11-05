@@ -1,0 +1,68 @@
+{
+ "run_dir": "/home/user/HLAgent_v3/runs/bench_B3_GenotypeExample_CookHLA_Node1-2_rep3_1792903700",
+ "state": "done",
+ "total_seconds": 145.009499,
+ "steps": [
+  {
+   "step": "Node1",
+   "study_id": "GenotypeExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:50:37.405940Z",
+   "finished_at": "2026-10-25T04:50:38.763697Z",
+   "seconds": 1.357757,
+   "n_commands_recorded": 1,
+   "n_external_commands": 1,
+   "external_seconds": 0.015
+  },
+  {
+   "step": "Node2",
+   "study_id": "GenotypeExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:50:38.764863Z",
+   "finished_at": "2026-10-25T04:50:46.071867Z",
+   "seconds": 7.307004,
+   "n_commands_recorded": 1,
+   "n_external_commands": 1,
+   "external_seconds": 0.015
+  },
+  {
+   "step": "StageD",
+   "study_id": "GenotypeExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:48:22.780138Z",
+   "finished_at": "2026-10-25T04:48:22.953866Z",
+   "seconds": 0.173728,
+   "n_commands_recorded": 4,
+   "n_external_commands": 4,
+   "external_seconds": 0.037
+  },
+  {
+   "step": "StageI",
+   "study_id": "GenotypeExample",
+   "status": "warning",
+   "started_at": "2026-10-25T04:48:22.954930Z",
+   "finished_at": "2026-10-25T04:50:37.404705Z",
+   "seconds": 134.449775,
+   "n_commands_recorded": 1,
+   "n_external_commands": 5,
+   "external_seconds": 134.448
+  },
+  {
+   "step": "StageR",
+   "study_id": null,
+   "status": "ok",
+   "started_at": "2026-10-25T04:50:46.073750Z",
+   "finished_at": "2026-10-25T04:50:47.787535Z",
+   "seconds": 1.713785,
+   "n_commands_recorded": 0,
+   "n_external_commands": 0,
+   "external_seconds": 0
+  }
+ ],
+ "n_external_commands": 6,
+ "external_seconds": 134.463,
+ "scenario": "B3_GenotypeExample_CookHLA_Node1-2",
+ "rep": 3,
+ "process_wall_seconds": 147.792,
+ "returncode": 0
+}

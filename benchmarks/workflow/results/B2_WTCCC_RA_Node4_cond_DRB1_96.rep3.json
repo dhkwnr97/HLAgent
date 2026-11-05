@@ -1,0 +1,68 @@
+{
+ "run_dir": "/home/user/HLAgent_v3/runs/bench_B2_WTCCC_RA_Node4_cond_DRB1_96_rep3_1792903137",
+ "state": "done",
+ "total_seconds": 238.474472,
+ "steps": [
+  {
+   "step": "Node1",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:39:00.076412Z",
+   "finished_at": "2026-10-25T04:39:34.630548Z",
+   "seconds": 34.554136,
+   "n_commands_recorded": 1,
+   "n_external_commands": 3,
+   "external_seconds": 0.117
+  },
+  {
+   "step": "Node4",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:42:44.596624Z",
+   "finished_at": "2026-10-25T04:42:58.244489Z",
+   "seconds": 13.647865,
+   "n_commands_recorded": 2,
+   "n_external_commands": 2,
+   "external_seconds": 12.775
+  },
+  {
+   "step": "StageD",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:38:59.926967Z",
+   "finished_at": "2026-10-25T04:39:00.074672Z",
+   "seconds": 0.147705,
+   "n_commands_recorded": 2,
+   "n_external_commands": 2,
+   "external_seconds": 0.021
+  },
+  {
+   "step": "StageP",
+   "study_id": "WTCCC_RA",
+   "status": "ok",
+   "started_at": "2026-10-25T04:39:34.632576Z",
+   "finished_at": "2026-10-25T04:42:44.595401Z",
+   "seconds": 189.962825,
+   "n_commands_recorded": 4,
+   "n_external_commands": 5,
+   "external_seconds": 188.006
+  },
+  {
+   "step": "StageR",
+   "study_id": null,
+   "status": "ok",
+   "started_at": "2026-10-25T04:42:58.245830Z",
+   "finished_at": "2026-10-25T04:42:58.399388Z",
+   "seconds": 0.153558,
+   "n_commands_recorded": 0,
+   "n_external_commands": 0,
+   "external_seconds": 0
+  }
+ ],
+ "n_external_commands": 9,
+ "external_seconds": 200.802,
+ "scenario": "B2_WTCCC_RA_Node4_cond_DRB1_96",
+ "rep": 3,
+ "process_wall_seconds": 240.872,
+ "returncode": 0
+}

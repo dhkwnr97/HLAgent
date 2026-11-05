@@ -1,0 +1,35 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# large or user data
+resources/reference_panels/
+resources/imgt/
+resources/examples/
+data/chroma/
+workspace/*
+!workspace/.gitkeep
+runs/*
+!runs/.gitkeep
+
+# derived caches (rebuilt by `hlagent setup-resources`)
+resources/hatk_cache/
+resources/liftover/
+resources/_v1/
+resources/MANIFEST*.json
+
+# not part of the public release
+docs/BUILD_PLAN.md
+paper/
+knowledge/articles/*
+!knowledge/articles/.gitkeep
+benchmarks/workflow/results/omnibus_published_phase/
+benchmarks/workflow/results/omnibus_published_aa/
+benchmarks/planning/results/
+*.docx
