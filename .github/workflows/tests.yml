@@ -1,0 +1,18 @@
+name: validation
+on: [push, pull_request]
+jobs:
+  python-and-statistics:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.10'
+      - run: uv sync --frozen --python 3.12
+      - run: sudo apt-get update && sudo apt-get install -y plink2 plink1.9 bcftools default-jre-headless r-base-core r-cran-metafor
+      - run: |
+          mkdir -p "$HOME/.local/share/hlagent/tools"
+          curl -fLsS https://faculty.washington.edu/browning/beagle/beagle.27Feb25.75f.jar -o "$HOME/.local/share/hlagent/tools/beagle.27Feb25.75f.jar"
+          printf '%s  %s\n' 7319f4af9638be05c18dcc1bfb8fb41a58a09293507ebf0d54617d0e40df5a70 "$HOME/.local/share/hlagent/tools/beagle.27Feb25.75f.jar" | sha256sum --check
+      - run: uv run --no-sync ruff check src tests scripts
+      - run: uv run --no-sync pytest -q

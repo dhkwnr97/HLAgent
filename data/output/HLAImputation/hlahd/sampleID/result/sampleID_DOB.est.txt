@@ -1,3 +1,0 @@
-#Pair count	1
-#Best allele pair	1
-HLA-DOB*01:01:01:01,HLA-DOB*01:01:01:02,HLA-DOB*01:01:01:04,HLA-DOB*01:01:01:03	-	exon2:80.6704:comp.0,exon3:66.3936:comp.0	-

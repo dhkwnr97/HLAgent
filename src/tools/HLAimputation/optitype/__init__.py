@@ -1,3 +1,0 @@
-"""
-OptiType Module for HLAgent
-"""

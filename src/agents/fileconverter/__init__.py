@@ -1,3 +1,0 @@
-"""
-File Converter Agent
-"""

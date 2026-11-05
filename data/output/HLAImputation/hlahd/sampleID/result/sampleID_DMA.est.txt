@@ -1,3 +1,0 @@
-#Pair count	1
-#Best allele pair	1
-HLA-DMA*01:01:01:01,HLA-DMA*01:01:01:02,HLA-DMA*01:01:01:03,HLA-DMA*01:01:01:04	-	exon2:23.5614:comp.0,exon3:37.7814:comp.0	-

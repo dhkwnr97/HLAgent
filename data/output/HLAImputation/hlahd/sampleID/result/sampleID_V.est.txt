@@ -1,3 +1,0 @@
-#Pair count	1
-#Best allele pair	1
-HLA-V*01:01:01:02,HLA-V*01:01:01:03	-	exon1:11.1528:comp.0,exon2:1.24096:incomp.78,exon3:11.3214:comp.0	-

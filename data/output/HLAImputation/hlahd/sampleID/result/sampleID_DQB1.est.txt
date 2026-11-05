@@ -1,3 +1,0 @@
-#Pair count	1
-#Best allele pair	1
-HLA-DQB1*06:02:01	HLA-DQB1*06:03:01	exon2:28.4667:comp.0	exon2:25.4259:comp.0

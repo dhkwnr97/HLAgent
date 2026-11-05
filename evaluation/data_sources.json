@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "status": "source_registry_not_completed_biological_benchmark",
+  "sources": [
+    {"id": "synthetic", "source": "hlagent.fixtures.create_demo", "seed": 20260906, "truth_type": "simulated_alleles_haplotypes_phenotypes", "use": "software_validation", "license": "project_owner_to_set", "checksums": "generated in each demo/provenance.json"},
+    {"id": "cookhla_example", "url": "https://github.com/WansonChoi/CookHLA", "use": "installation_reproducibility_only", "truth_type": "not_used_as_accuracy_truth", "redistributed": false, "checksums": "recorded in approved local smoke plan"},
+    {"id": "igsr_hla", "url": "https://www.internationalgenome.org/faq/was-hla-diversity-studied-in-igsr/", "use": "candidate_independent_genotype_accuracy", "truth_type": "must_separate_experimental_typing_from_prediction", "downloaded_for_benchmark": false, "sha256": null, "reference_overlap_audit": null, "license_review": "pending_dataset_selection"},
+    {"id": "trio_phase_truth", "use": "independent_phase_accuracy", "truth_type": "trio_or_independently_verified_phase_required", "dataset": null, "sha256": null, "status": "not_acquired"}
+  ]
+}

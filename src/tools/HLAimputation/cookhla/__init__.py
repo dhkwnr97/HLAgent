@@ -1,3 +1,0 @@
-"""
-CookHLA Module for HLAgent
-"""

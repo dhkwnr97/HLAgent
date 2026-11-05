@@ -1,3 +1,0 @@
-#Pair count	1
-#Best allele pair	1
-HLA-DRA*01:02:03	HLA-DRA*01:01:01:01,HLA-DRA*01:01:01:02,HLA-DRA*01:01:01:03	exon2:94.8211:comp.0,exon3:55.5213:comp.0	exon2:94.8211:comp.0,exon3:51.4326:comp.0

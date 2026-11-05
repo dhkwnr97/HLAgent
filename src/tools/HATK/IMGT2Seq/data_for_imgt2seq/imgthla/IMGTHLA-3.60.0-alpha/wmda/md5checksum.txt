@@ -1,6 +1,0 @@
-MD5 (README.md) = 402515ccafec5f78b94035a17441bd0c
-MD5 (hla_nom.txt) = 622f42177a0f859bd5b302b165a69fad
-MD5 (hla_nom_g.txt) = 2eafc2df945b613c3269d52db729a1d1
-MD5 (hla_nom_p.txt) = b17557d67ac8ada98b299fa6092136bb
-MD5 (rel_dna_ser.txt) = 7b0b0c73749cdb43505a7ed91c90c040
-MD5 (rel_ser_ser.txt) = d51dc3a121f1e001693ea65f89fd583b

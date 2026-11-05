@@ -1,3 +1,0 @@
-_input_files: [data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-A.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-B.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-C.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-DPA1.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-DPB1.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-DQA1.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-DQB1.out, data/input/OtherHLAimpute/HIBAG/HIBAG_TestResult.HLA-DRB1.out]
-
-_output_path: data/output/ConvertHPED

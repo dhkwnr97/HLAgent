@@ -1,3 +1,0 @@
-"""
-HLAHD Module for HLAgent
-"""
